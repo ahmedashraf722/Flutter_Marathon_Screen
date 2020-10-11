@@ -4,6 +4,7 @@ import 'package:marathon/home_start.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
+  //aa
 }
 
 class MyApp extends StatelessWidget {
