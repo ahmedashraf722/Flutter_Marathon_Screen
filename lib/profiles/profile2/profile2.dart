@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:marathon/profiles/profile2/photo_repository.dart';
 import 'package:marathon/profiles/profile2/provider2.dart';
 import 'package:marathon/profiles/profile2/user2.dart';
+import 'package:marathon/profiles/profile3/profile3.dart';
 
 class Profile2 extends StatefulWidget {
   @override
@@ -14,33 +15,39 @@ class _Profile1State extends State<Profile2> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(fontFamily: 'NotoSansJP'),
-      child: Stack(
-        children: [
-          Image.asset(
-            'assets/images/profiles/profile2bg.jpg',
-            fit: BoxFit.cover,
-            height: MediaQuery.of(context).size.height * 0.45,
-          ),
-          Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              elevation: 0,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Profile3()));
+      },
+      child: Theme(
+        data: ThemeData(fontFamily: 'NotoSansJP'),
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/profiles/profile2bg.jpg',
+              fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height * 0.45,
+            ),
+            Scaffold(
               backgroundColor: Colors.transparent,
-              leading: IconButton(
-                onPressed: () {},
-                icon: Icon(FontAwesomeIcons.bars),
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: Icon(FontAwesomeIcons.bars),
+                ),
+              ),
+              body: Stack(
+                children: [
+                  _profileTitle(context),
+                  _bodyProfileContent(context),
+                ],
               ),
             ),
-            body: Stack(
-              children: [
-                _profileTitle(context),
-                _bodyProfileContent(context),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
