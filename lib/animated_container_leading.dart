@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marathon/profiles/profile2/profile2.dart';
 
 class LeadingContainer extends StatefulWidget {
   @override
@@ -22,7 +23,10 @@ class _LeadingContainerState extends State<LeadingContainer> {
         actions: [
           IconButton(
             icon: Icon(Icons.list),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile2()));
+            },
           ),
         ],
       ),
