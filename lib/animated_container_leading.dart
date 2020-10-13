@@ -45,8 +45,10 @@ class _LeadingContainerState extends State<LeadingContainer> {
                 selected ? Alignment.center : AlignmentDirectional.topCenter,
             duration: Duration(milliseconds: 500),
             curve: Curves.fastOutSlowIn,
-            child: FlutterLogo(
-              size: 85,
+            child: Center(
+              child: FlutterLogo(
+                size: 85,
+              ),
             ),
           ),
         ),

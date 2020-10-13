@@ -54,10 +54,25 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/fonts/NotoSansJP-Black.otf
+    - assets/fonts/NotoSansJP-Bold.otf
+    - assets/fonts/NotoSansJP-Light.otf
+    - assets/fonts/NotoSansJP-Medium.otf
+    - assets/fonts/NotoSansJP-Regular.otf
+    - assets/fonts/NotoSansJP-Thin.otf
+    - assets/fonts/OFL.txt
+    - assets/icons/m.png
+    - assets/images/profiles/landscape_1.jpg
+    - assets/images/profiles/profile2bg.jpg
+    - assets/images/profiles/profile3bg.jpg
+    - assets/images/profiles/profile4bg.jpg
+    - assets/images/registration/darkbg1.jpg
+    - assets/images/registration/registration3.jpg
+    - assets/images/registration/registration4.jpg
+    - assets/images/registration/registrationbg2.jpg
+    - assets/images/registration/waves_bg.jpg
+    - assets/images/share/a.jpg
     - assets/n.jpg
-    - assets/images/profiles/.
-    - assets/images/share/.
-    - assets/images/registration/.
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
