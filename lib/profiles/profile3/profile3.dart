@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marathon/profiles/profile2/photo_repository.dart';
 import 'package:marathon/profiles/profile3/provider3.dart';
 import 'package:marathon/profiles/profile3/user3.dart';
+import 'package:marathon/scroll_screen.dart';
 
 class Profile3 extends StatefulWidget {
   @override
@@ -13,39 +14,50 @@ class _Profile3State extends State<Profile3> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          'assets/images/profiles/profile3bg.jpg',
-          fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ScreenBarItem()));
+      },
+      child: Theme(
+        data: ThemeData(
+          fontFamily: 'NotoSansJP',
         ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: Icon(Icons.arrow_back),
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/profiles/profile3bg.jpg',
+              fit: BoxFit.cover,
+              height: MediaQuery.of(context).size.height,
             ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.more_vert),
+            Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.arrow_back),
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.more_vert),
+                  ),
+                ],
               ),
-            ],
-          ),
-          body: Stack(
-            children: [
-              _bodyContent(context),
-              _profileContent(context),
-            ],
-          ),
+              body: Stack(
+                children: [
+                  _bodyContent(context),
+                  _profileContent(context),
+                ],
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
