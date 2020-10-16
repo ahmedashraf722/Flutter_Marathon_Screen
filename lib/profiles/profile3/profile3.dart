@@ -334,11 +334,11 @@ class _Profile3State extends State<Profile3> {
           child: Text(
             _profile.user.about,
             style: TextStyle(
-              color: Colors.blueGrey[800],
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              height: 1.2,
-            ),
+            color: Colors.blueGrey[800],
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            height: 1.2,
+          ),
           ),
         ),
       ),
