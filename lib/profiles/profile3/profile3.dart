@@ -12,6 +12,24 @@ class Profile3 extends StatefulWidget {
 class _Profile3State extends State<Profile3> {
   Profile _profile = ProfileProvider.getProfile();
 
+  bool _visitable = false;
+  bool _visitable2 = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _visitable = true;
+      });
+    });
+    Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+        _visitable2 = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -105,45 +123,67 @@ class _Profile3State extends State<Profile3> {
               child: _followContent(context),
             ),
             _dividerBody(context),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: _counterFollowed(context),
-            ),
-            _dividerBody(context),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              child: Text(
-                "Photos (${_profile.photos.toString()})",
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.blueGrey[800],
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            _listPhotosContent(context),
-            ..._aboutMe(context),
-            _friends(context),
-            _listContacts(context),
-            SizedBox(height: 30),
+            ..._okContent(context),
           ],
         ),
       ),
     );
   }
 
+  List<Widget> _okContent(BuildContext context) {
+    return [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 800),
+          opacity: _visitable2 ? 1 : 0,
+          child: _counterFollowed(context),
+        ),
+      ),
+      _dividerBody(context),
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: Text(
+          "Photos (${_profile.photos.toString()})",
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.blueGrey[800],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      _listPhotosContent(context),
+      ..._aboutMe(context),
+      AnimatedOpacity(
+        duration: Duration(milliseconds: 500),
+        opacity: _visitable2 ? 1 : 0,
+        child: _friends(context),
+      ),
+      _listContacts(context),
+      SizedBox(height: 30),
+    ];
+  }
+
   Widget _profileContent(BuildContext context) {
-    return Positioned(
-      top: MediaQuery.of(context).size.height * 0.10 - 40,
+    double _finalPosition = MediaQuery.of(context).size.height * 0.10 - 40;
+    double _startPosition = MediaQuery.of(context).size.height * 0.10 - 65;
+
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 600),
+      top: _visitable ? _finalPosition : _startPosition,
       left: MediaQuery.of(context).size.width / 2 - 40,
-      child: Container(
-        width: 80,
-        height: 80,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: ExactAssetImage('assets/images/share/a.jpg'),
-            fit: BoxFit.cover,
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 400),
+        opacity: _visitable ? 1 : 0,
+        child: Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: ExactAssetImage('assets/images/share/a.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
@@ -155,8 +195,10 @@ class _Profile3State extends State<Profile3> {
       child: MaterialButton(
         color: Color(0xFFf05522),
         onPressed: () {},
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: AnimatedPadding(
+          duration: Duration(milliseconds: 400),
+          padding: EdgeInsets.symmetric(
+              horizontal: _visitable ? 16 : 2, vertical: 8),
           child: Text(
             'FOLLOW',
             style: TextStyle(
@@ -286,13 +328,17 @@ class _Profile3State extends State<Profile3> {
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          _profile.user.about,
-          style: TextStyle(
-            color: Colors.blueGrey[800],
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            height: 1.2,
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 600),
+          opacity: _visitable2 ? 1 : 0,
+          child: Text(
+            _profile.user.about,
+            style: TextStyle(
+              color: Colors.blueGrey[800],
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              height: 1.2,
+            ),
           ),
         ),
       ),
