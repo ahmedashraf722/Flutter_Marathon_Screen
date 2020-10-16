@@ -13,6 +13,18 @@ class Profile2 extends StatefulWidget {
 class _Profile1State extends State<Profile2> {
   Profile _profile = ProfileProvider.getProfile();
 
+  bool _visitable = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _visitable = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -86,14 +98,18 @@ class _Profile1State extends State<Profile2> {
               ),
               Align(
                 alignment: Alignment.center,
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/share/a.jpg'),
-                      fit: BoxFit.cover,
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 500),
+                  opacity: _visitable ? 1 : 0,
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/share/a.jpg'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -159,49 +175,53 @@ class _Profile1State extends State<Profile2> {
   Widget _counterFollowed(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Text(
-                "FOLLOWERS",
-                style: _bottomTextStyle,
-              ),
-              SizedBox(height: 6),
-              Text(
-                _profile.followers.toString(),
-                style: _bottomCounterStyleBar,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                "FOLLOWING",
-                style: _bottomTextStyle,
-              ),
-              SizedBox(height: 6),
-              Text(
-                _profile.following.toString(),
-                style: _bottomCounterStyleBar,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Text(
-                "FRIENDS",
-                style: _bottomTextStyle,
-              ),
-              SizedBox(height: 6),
-              Text(
-                _profile.friends.toString(),
-                style: _bottomCounterStyleBar,
-              ),
-            ],
-          ),
-        ],
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 800),
+        opacity: _visitable ? 1 : 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Text(
+                  "FOLLOWERS",
+                  style: _bottomTextStyle,
+                ),
+                SizedBox(height: 6),
+                Text(
+                  _profile.followers.toString(),
+                  style: _bottomCounterStyleBar,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  "FOLLOWING",
+                  style: _bottomTextStyle,
+                ),
+                SizedBox(height: 6),
+                Text(
+                  _profile.following.toString(),
+                  style: _bottomCounterStyleBar,
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Text(
+                  "FRIENDS",
+                  style: _bottomTextStyle,
+                ),
+                SizedBox(height: 6),
+                Text(
+                  _profile.friends.toString(),
+                  style: _bottomCounterStyleBar,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
