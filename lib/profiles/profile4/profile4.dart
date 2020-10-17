@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marathon/page_view.dart';
 import 'package:marathon/profiles/profile4/provider4.dart';
 import 'package:marathon/profiles/profile4/user4.dart';
 
@@ -23,41 +24,47 @@ class _Profile4State extends State<Profile4> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          "assets/images/profiles/profile4bg.jpg",
-          fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height,
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PageViewScreens()));
+      },
+      child: Stack(
+        children: [
+          Image.asset(
+            "assets/images/profiles/profile4bg.jpg",
+            fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height,
+          ),
+          Scaffold(
             backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () {},
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
-            ],
-          ),
-          body: Align(
-            alignment: Alignment.bottomCenter,
-            child: AnimatedOpacity(
-              duration: Duration(seconds: 1),
-              opacity: _visitable ? 1 : 0,
-              child: _bodyContent(context),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.more_vert),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            body: Align(
+              alignment: Alignment.bottomCenter,
+              child: AnimatedOpacity(
+                duration: Duration(seconds: 1),
+                opacity: _visitable ? 1 : 0,
+                child: _bodyContent(context),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
