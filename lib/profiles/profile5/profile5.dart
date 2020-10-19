@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marathon/chats/chat1/chat_list.dart';
 import 'package:marathon/profiles/profile2/photo_repository.dart';
 import 'package:marathon/profiles/profile5/profile.dart';
 
@@ -27,6 +28,12 @@ class _Profile5State extends State<Profile5>
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +48,10 @@ class _Profile5State extends State<Profile5>
         actions: [
           IconButton(
             icon: Icon(Icons.settings, color: _textColor),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ChatList()));
+            },
           ),
         ],
       ),
