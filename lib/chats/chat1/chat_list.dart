@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marathon/chats/chat1/message_provider.dart';
 import 'package:marathon/chats/chat1/tabs/groups.dart';
 import 'package:marathon/chats/chat1/tabs/history.dart';
 import 'package:marathon/chats/chat1/tabs/index.dart';
 import 'package:marathon/chats/chat1/tabs/online.dart';
+import 'package:marathon/chats/chat2/chat_screens.dart';
 
 class ChatList extends StatefulWidget {
   @override
@@ -29,75 +31,86 @@ class _ChatListState extends State<ChatList>
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        fontFamily: GoogleFonts.montserrat().fontFamily,
-      ),
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.grey[100],
-          ),
-          CustomPaint(
-            painter: ChatBackGround(),
-            size: Size(double.infinity, double.infinity),
-          ),
-          Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChatScreen(
+                      MessageProvider.getChats(),
+                      "Ahmed Ashraf",
+                    )));
+      },
+      child: Theme(
+        data: ThemeData(
+          fontFamily: GoogleFonts.montserrat().fontFamily,
+        ),
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.grey[100],
+            ),
+            CustomPaint(
+              painter: ChatBackGround(),
+              size: Size(double.infinity, double.infinity),
+            ),
+            Scaffold(
               backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  size: 32,
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    size: 32,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: Text(
-                "MESSAGES",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
+                title: Text(
+                  "MESSAGES",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                centerTitle: true,
+                bottom: TabBar(
+                  controller: _tabController,
+                  unselectedLabelColor: Color(0xfff76aa4),
+                  indicatorColor: Colors.transparent,
+                  indicator: BoxDecoration(),
+                  tabs: [
+                    Tab(
+                      text: "Index",
+                    ),
+                    Tab(
+                      text: "Groups",
+                    ),
+                    Tab(
+                      text: "Online50",
+                    ),
+                    Tab(
+                      text: "History",
+                    ),
+                  ],
                 ),
               ),
-              centerTitle: true,
-              bottom: TabBar(
+              body: TabBarView(
                 controller: _tabController,
-                unselectedLabelColor: Color(0xfff76aa4),
-                indicatorColor: Colors.transparent,
-                indicator: BoxDecoration(),
-                tabs: [
-                  Tab(
-                    text: "Index",
-                  ),
-                  Tab(
-                    text: "Groups",
-                  ),
-                  Tab(
-                    text: "Online50",
-                  ),
-                  Tab(
-                    text: "History",
-                  ),
+                children: [
+                  ConversionList(),
+                  GroupsList(),
+                  OnlineList(),
+                  HistoryList(),
                 ],
               ),
             ),
-            body: TabBarView(
-              controller: _tabController,
-              children: [
-                ConversionList(),
-                GroupsList(),
-                OnlineList(),
-                HistoryList(),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 class User {
-  String name, image;
+  String name, image, phone;
 
-  User({this.name, this.image,});
+  User({this.name, this.image, this.phone});
 }
