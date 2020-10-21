@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:marathon/chats/chat1/conversion.dart';
 import 'package:marathon/chats/chat1/message.dart';
+import 'package:marathon/registers/registration1.dart';
 
 class ChatScreen extends StatefulWidget {
   final Conversion conversation;
@@ -272,6 +273,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             TextFormField(
               controller: _messageController,
+              style: TextStyle(color: Colors.grey),
               decoration: InputDecoration(
                 hoverColor: Colors.white,
                 contentPadding: EdgeInsets.only(left: 24, right: 24),
@@ -297,7 +299,10 @@ class _ChatScreenState extends State<ChatScreen> {
             Align(
               alignment: Alignment.centerRight,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Register1()));
+                },
                 child: Transform.translate(
                   offset: Offset(-10, 6),
                   child: Container(
