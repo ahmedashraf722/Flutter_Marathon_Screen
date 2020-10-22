@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marathon/registers/registration2.dart';
 
 class Register1 extends StatefulWidget {
   @override
@@ -186,7 +187,10 @@ class _Register1State extends State<Register1> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Register2()));
+                  },
                   child: Transform.translate(
                     offset: Offset(32, 32),
                     child: Container(

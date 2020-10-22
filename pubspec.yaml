@@ -68,15 +68,19 @@ flutter:
     - assets/images/profiles/profile3bg.jpg
     - assets/images/profiles/profile4bg.jpg
     - assets/images/registration/darkbg1.jpg
-    - assets/images/registration/registration3.jpg
     - assets/images/registration/registration4.jpg
     - assets/images/registration/registrationbg2.jpg
     - assets/images/registration/waves_bg.jpg
     - assets/images/share/a.jpg
+    - assets/images/share/aaaa.jpg
     - assets/images/share/c.jpg
     - assets/images/share/e.jpg
     - assets/images/share/eee.jpg
+    - assets/images/share/err.jpg
+    - assets/images/share/ff.jpg
+    - assets/images/share/rr.jpg
     - assets/images/share/s.jpg
+    - assets/images/share/v.jpg
     - assets/n.jpg
   #   - images/a_dot_ham.jpeg
 
