@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Register3 extends StatefulWidget {
   @override
@@ -6,37 +7,213 @@ class Register3 extends StatefulWidget {
 }
 
 class _Register3State extends State<Register3> {
+  var _key = GlobalKey<FormState>();
+
+  final TextEditingController _editingEmailController = TextEditingController();
+  final TextEditingController _editingPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _editingEmailController.dispose();
+    _editingPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          "assets/images/share/v.jpg",
-          fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width,
-        ),
-        Opacity(
-          opacity: 0.5,
-          child: CustomPaint(
+    return Theme(
+      data: ThemeData(
+        fontFamily: GoogleFonts.montserrat().fontFamily,
+      ),
+      child: Stack(
+        children: [
+          Image.asset(
+            "assets/images/share/v.jpg",
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+          ),
+          Opacity(
+            opacity: 0.5,
+            child: CustomPaint(
+              painter: BackGroundBody(
+                leftPoint: 0.35,
+                rightPoint: 0.4,
+                midPoint1: 0.7,
+                midPoint2: 0.6,
+              ),
+              child: Container(),
+            ),
+          ),
+          CustomPaint(
             painter: BackGroundBody(
-              leftPoint: 0.35,
-              rightPoint: 0.4,
-              midPoint1: 0.7,
-              midPoint2: 0.6,
+              leftPoint: 0.42,
+              rightPoint: 0.5,
+              midPoint1: 0.71,
+              midPoint2: 0.61,
             ),
             child: Container(),
           ),
-        ),
-        CustomPaint(
-          painter: BackGroundBody(
-            leftPoint: 0.42,
-            rightPoint: 0.5,
-            midPoint1: 0.71,
-            midPoint2: 0.61,
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(30),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 400),
+                    Transform.translate(
+                      offset: Offset(0, -7),
+                      child: Text(
+                        "Login to Start!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    _formBody(context),
+                    _actionEnd(context),
+                  ],
+                ),
+              ),
+            ),
           ),
-          child: Container(),
+        ],
+      ),
+    );
+  }
+
+  Widget _formBody(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          child: Form(
+            key: _key,
+            child: Column(
+              children: [
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  controller: _editingEmailController,
+                  decoration: InputDecoration(
+                    labelText: "Your email",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    hintText: "Email@address.com",
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    focusColor: Colors.white,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2),
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  controller: _editingPasswordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    hintText: "**********",
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    suffixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.white,
+                    ),
+                    focusColor: Colors.white,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(-2, 25),
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              width: 80,
+              height: 80,
+              margin: EdgeInsets.only(left: 10, top: 5),
+              decoration: BoxDecoration(
+                color: Color(0xfff9c660),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(
+                  "Go",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.1,
+                  ),
+                ),
+              ),
+            ),
+          ),
         )
       ],
+    );
+  }
+
+  Color _colorText = Color(0xfff9ea60);
+
+  Widget _actionEnd(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(0, 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FlatButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {},
+            child: Text(
+              "Forgot Password?",
+              style: TextStyle(
+                color: _colorText,
+                letterSpacing: 1.2,
+              ),
+            ),
+          ),
+          FlatButton(
+            onPressed: () {},
+            child: Text(
+              "Sign Up",
+              style: TextStyle(
+                color: _colorText,
+                letterSpacing: 1.2,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
