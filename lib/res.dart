@@ -7,7 +7,6 @@ class Res {
   static const String profile3bg = "assets/images/profiles/profile3bg.jpg";
   static const String profile4bg = "assets/images/profiles/profile4bg.jpg";
   static const String darkbg1 = "assets/images/registration/darkbg1.jpg";
-  static const String registration4 = "assets/images/registration/registration4.jpg";
   static const String registrationbg2 = "assets/images/registration/registrationbg2.jpg";
   static const String waves_bg = "assets/images/registration/waves_bg.jpg";
   static const String a = "assets/images/share/a.jpg";
