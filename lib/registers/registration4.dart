@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marathon/registers/registration5.dart';
 
 class Register4 extends StatefulWidget {
   @override
@@ -22,24 +23,30 @@ class _Register4State extends State<Register4> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        fontFamily: GoogleFonts.montserrat().fontFamily,
-      ),
-      child: CustomPaint(
-        painter: BackGround(),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Register5()));
+      },
+      child: Theme(
+        data: ThemeData(
+          fontFamily: GoogleFonts.montserrat().fontFamily,
+        ),
+        child: CustomPaint(
+          painter: BackGround(),
+          child: Scaffold(
             backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: Stack(
-            children: [
-              _titleLogin(context),
-              _profileTitle(context),
-              _bodyProfile(context),
-            ],
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Stack(
+              children: [
+                _titleLogin(context),
+                _profileTitle(context),
+                _bodyProfile(context),
+              ],
+            ),
           ),
         ),
       ),
